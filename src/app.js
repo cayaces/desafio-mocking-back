@@ -1,14 +1,14 @@
-const express = require("express")
-const mongoose = require("mongoose")
+import express from 'express'
+import productRoutes from './routes/products.js'
 
 const app = express()
-const PORT = 8080;
+const PORT = 8080
 
-mongoose.connect("mongodb+srv://coderClau:7725AmorCODER@coderclau.lgoc83w.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.use('/api', productRoutes)
 
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en puerto ${PORT}`);
-});
+    console.log(`Servidor escuchando en puerto ${PORT}`)
+})
